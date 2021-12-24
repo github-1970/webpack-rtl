@@ -1,0 +1,35 @@
+{
+  "name": "first",
+  "version": "1.0.0",
+  "description": "js structure for beginner project",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack",
+    "watch": "webpack --watch",
+    "rtl": "webpack --config webpack.config.rtl.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@automattic/webpack-rtl-plugin": "latest",
+    "@babel/core": "latest",
+    "@babel/preset-env": "latest",
+    "@ianwalter/exclude-assets-plugin": "latest",
+    "@webpack-cli/generators": "latest",
+    "babel-loader": "latest",
+    "css-loader": "latest",
+    "eslint": "latest",
+    "eslint-webpack-plugin": "latest",
+    "html-webpack-exclude-assets-plugin": "latest",
+    "html-webpack-plugin": "latest",
+    "html-webpack-tags-plugin": "latest",
+    "mini-css-extract-plugin": "latest",
+    "sass": "latest",
+    "sass-loader": "latest",
+    "webpack": "latest",
+    "webpack-cli": "latest",
+    "webpack-shell-plugin-next": "latest",
+    "style-loader": "latest"
+  }
+}
