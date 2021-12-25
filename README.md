@@ -10,9 +10,9 @@ npm install
 npm run build
 ```
 > Note: node and npm must be pre-installed!
---
---
---
+<br>
+<br>
+<br>
 سلام...
 برای استفاده از این پروژه تستی، دستورات زیر را در ترمیننال وارد کنید:
 1 اول:
@@ -25,6 +25,3 @@ npm run build
 ```
 
 > نکته: node و npm باید از قبل نصب شده باشند!
-
-تست و 
-فور تست
