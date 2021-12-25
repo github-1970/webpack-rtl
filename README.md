@@ -1,5 +1,6 @@
 # todo-with-vanilla-js
 Hi...
+
 for use this project, just run following codes in terminal:
 
 1 fist:
@@ -11,10 +12,11 @@ npm install
 npm run build
 ```
 > Note: node and npm must be pre-installed!
-<br>
-<br>
-<br>
-سلام...
+
+
+
+
+<p dir="rtl">سلام...</p>
 
 برای استفاده از این پروژه تستی، دستورات زیر را در ترمیننال وارد کنید:
 
