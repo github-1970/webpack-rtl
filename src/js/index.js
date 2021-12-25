@@ -123,6 +123,11 @@ todoContent.addEventListener("click", function (e) {
   let parent = e.target.parentNode;
 
   if (parent.classList.contains("trash")) {
+    let textItem = _todoItem.querySelector(".li-text")
+
+    let localValuesEdited = getValuesFromLocalStorage().filter(text => text != textItem.innerText)
+    localStorage.setItem( 'todo', JSON.stringify(localValuesEdited) )
+
     _todoItem.remove();
   }
 });
@@ -200,6 +205,10 @@ todoClear.addEventListener('click', function(){
 // local storage
 // load elements in localstorage
 window.addEventListener('load', function(){
+  // just abuse...
+  todoInput.focus()
+  // end just abuse...
+
   let localValues = getValuesFromLocalStorage()
   if(localValues.length >= 1){
     localValues.forEach( localValue => addElement(localValue) )
