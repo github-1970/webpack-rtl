@@ -105,5 +105,5 @@ dist
 
 # private
 node_modules
-.vscode/
+.vscode
 
