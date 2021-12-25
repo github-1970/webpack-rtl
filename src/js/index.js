@@ -45,7 +45,7 @@ todoSubmit.addEventListener("click", function (e) {
       let textItem = editing.querySelector(".li-text")
 
       let localValuesEdited = getValuesFromLocalStorage().map(text => text == textItem.innerText ? todoInput.value : text)
-      localStorage.setItem( 'todo', JSON.stringify(localValuesEdited) )
+      localStorage.setItem('todo', JSON.stringify(localValuesEdited))
 
       textItem.innerText = todoInput.value;
       editing.classList.remove("editing");
@@ -56,7 +56,7 @@ todoSubmit.addEventListener("click", function (e) {
     else {
       let inputArray = getValuesFromLocalStorage()
       inputArray.push(todoInput.value)
-      localStorage.setItem( 'todo', JSON.stringify(inputArray) )
+      localStorage.setItem('todo', JSON.stringify(inputArray))
 
       addElement(todoInput.value);
       todoInput.value = "";
@@ -126,7 +126,7 @@ todoContent.addEventListener("click", function (e) {
     let textItem = _todoItem.querySelector(".li-text")
 
     let localValuesEdited = getValuesFromLocalStorage().filter(text => text != textItem.innerText)
-    localStorage.setItem( 'todo', JSON.stringify(localValuesEdited) )
+    localStorage.setItem('todo', JSON.stringify(localValuesEdited))
 
     _todoItem.remove();
   }
@@ -196,7 +196,7 @@ function filterHandler() {
 // end filter
 
 // clear todo
-todoClear.addEventListener('click', function(){
+todoClear.addEventListener('click', function () {
   todoContent.innerHTML = ''
   localStorage.setItem('todo', [])
 })
@@ -204,21 +204,21 @@ todoClear.addEventListener('click', function(){
 
 // local storage
 // load elements in localstorage
-window.addEventListener('load', function(){
+window.addEventListener('load', function () {
   // just abuse...
   todoInput.focus()
   // end just abuse...
 
   let localValues = getValuesFromLocalStorage()
-  if(localValues.length >= 1){
-    localValues.forEach( localValue => addElement(localValue) )
+  if (localValues.length >= 1) {
+    localValues.forEach(localValue => addElement(localValue))
   }
 })
 // load elements in localstorage
 
 // get values from localstorage
-function getValuesFromLocalStorage(){
-  return localStorage.getItem('todo') && IsJsonString( localStorage.getItem('todo') ) && JSON.parse( localStorage.getItem('todo') ) ? JSON.parse( localStorage.getItem('todo') ) : [];
+function getValuesFromLocalStorage() {
+  return localStorage.getItem('todo') && IsJsonString(localStorage.getItem('todo')) && JSON.parse(localStorage.getItem('todo')) ? JSON.parse(localStorage.getItem('todo')) : [];
 }
 // end get values from localstorage
 // end local storage
@@ -226,9 +226,9 @@ function getValuesFromLocalStorage(){
 // public methods
 function IsJsonString(str) {
   try {
-      JSON.parse(str);
+    JSON.parse(str);
   } catch (e) {
-      return false;
+    return false;
   }
   return true;
 }
