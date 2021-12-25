@@ -27,9 +27,13 @@
     "mini-css-extract-plugin": "latest",
     "sass": "latest",
     "sass-loader": "latest",
+    "style-loader": "latest",
     "webpack": "latest",
     "webpack-cli": "latest",
-    "webpack-shell-plugin-next": "latest",
-    "style-loader": "latest"
+    "webpack-shell-plugin-next": "latest"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
+    "normalize.css": "^8.0.1"
   }
 }

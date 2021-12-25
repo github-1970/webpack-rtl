@@ -1,0 +1,27 @@
+*{
+  font-family: Yekan;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-weight: bolder;
+  transition: all 0.3s linear;
+  color: $primary-color;
+}
+
+input::placeholder{
+  color: $primary-color;
+  font-weight: bolder;
+}
+
+ul{
+  list-style: none;
+}
+
+.error{
+  background: rgb(255, 62, 62) !important;
+  color: $bg-color;
+}
+
+.d-flex{
+  display: flex;
+}

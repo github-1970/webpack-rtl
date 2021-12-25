@@ -1,0 +1,172 @@
+@import 'normalize.css';
+@import './variables';
+@import './fonts';
+@import './global';
+@import '@fortawesome/fontawesome-free/css/all.css';
+
+
+.container {
+  min-width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  // justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: linear-gradient(45deg, $bg-color, $bg-color-secondary);
+  padding-top: 5rem;
+}
+
+h1 {
+  margin-bottom: 6rem;
+}
+
+.todo {
+
+  // todo form
+  .todo-form {
+    display: flex;
+    flex-direction: column;
+
+    .options{
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+    }
+
+    form {
+      width: 28rem;
+      order: 2;
+
+      .todo-form-item {
+        appearance: none;
+        border: none;
+        outline: none;
+        box-shadow: none;
+        padding: .8rem;
+        background: white;
+        font-weight: normal;
+      }
+
+      .todo-input {
+        font-size: 1.3rem;
+        color: $primary-color;
+        width: 100%;
+        border-radius: .3rem 0 0 .3rem;
+      }
+
+      .todo-submit {
+        cursor: pointer;
+        border-radius: 0 .3rem .3rem 0;
+      }
+    }
+
+    .select-container {
+      font-size: 1.3rem;
+      background: white;
+      position: relative;
+      border-radius: .3rem;
+
+      select {
+        appearance: none;
+        border: none;
+        outline: none;
+        padding: 1.2rem 2rem 1rem .8rem;
+        border-radius: .3rem;
+      }
+    }
+
+    .select-container:after {
+      position: absolute;
+      font-family: "Font Awesome 5 Free";
+      content: attr(data-after);
+      color: $primary-color;
+      font-size: 1.5rem;
+      top: .7rem;
+      right: .5rem;
+    }
+
+    .todo-clear{
+      appearance: none;
+      border: none;
+      outline: none;
+      box-shadow: none;
+      background: $darken-color;
+      color: $bg-color;
+      padding: .8rem;
+      margin-left: 1.5rem;
+      border-radius: .3rem;
+      font-size: 1.3rem;
+      cursor: pointer;
+    }
+  }
+  // end todo form
+
+
+  // todo content
+  .todo-content {
+    margin-top: 2rem;
+    width: 28rem;
+
+    li {
+      background: $light-color;
+      padding: .8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: .3rem;
+      margin-bottom: 1rem;
+
+      .li-text {
+        font-size: 1.3rem;
+      }
+
+      .icons {
+        display: flex;
+        align-content: center;
+
+        .check {
+          margin-top: 0.09rem;
+        }
+        .fa-check-square {
+          display: none;
+        }
+        .fa-square {
+          display: block;
+        }
+
+        svg {
+          cursor: pointer;
+        }
+        svg:not(.fa-trash-alt) {
+          margin-right: 1rem;
+        }
+      }
+
+      &.completed {
+        opacity: .5;
+
+        .li-text {
+          text-decoration: line-through;
+        }
+
+        .fa-check-square {
+          display: block;
+        }
+
+        .fa-square {
+          display: none;
+        }
+      }
+
+      &.editing {
+        background: $primary-color;
+        
+        *{
+          color: $bg-color;
+        }
+      }
+    }
+  }
+
+  // end todo content
+}
