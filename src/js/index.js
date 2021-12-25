@@ -42,7 +42,12 @@ todoSubmit.addEventListener("click", function (e) {
     const editing = document.querySelector(".editing");
     // edit item
     if (editing) {
-      editing.querySelector(".li-text").innerText = todoInput.value;
+      let textItem = editing.querySelector(".li-text")
+
+      let localValuesEdited = getValuesFromLocalStorage().map(text => text == textItem.innerText ? todoInput.value : text)
+      localStorage.setItem( 'todo', JSON.stringify(localValuesEdited) )
+
+      textItem.innerText = todoInput.value;
       editing.classList.remove("editing");
       editing.scrollIntoView({ behavior: "smooth", block: "center" });
       todoInput.value = "";
