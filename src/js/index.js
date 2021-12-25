@@ -33,31 +33,38 @@ todoSubmit.addEventListener("click", function (e) {
   let error = document.querySelector(".error");
   error?.remove();
 
+  // check error
   if (todoInput.value == "") {
     addError();
     todoInput.focus();
-  } else {
+  }
+  else {
     const editing = document.querySelector(".editing");
+    // edit item
     if (editing) {
       editing.querySelector(".li-text").innerText = todoInput.value;
       editing.classList.remove("editing");
       editing.scrollIntoView({ behavior: "smooth", block: "center" });
       todoInput.value = "";
-    } else {
-      addElement();
+    }
+    // add item
+    else {
+      let inputArray = getValuesFromLocalStorage()
+      inputArray.push(todoInput.value)
+      localStorage.setItem( 'todo', JSON.stringify(inputArray) )
+
+      addElement(todoInput.value);
       todoInput.value = "";
       todoInput.focus();
-      // let todoItem = document.querySelector('.todo-item:nth-last-child(2)')
-      // todoItem.scrollIntoView()
     }
   }
 });
 
-function addElement() {
+function addElement(value) {
   let li = document.createElement("li");
   li.classList.add("todo-item");
   li.innerHTML = `
-  <span class="li-text">${todoInput.value}</span>
+  <span class="li-text">${value}</span>
   
   <span class="icons">
     <span class="check">
@@ -181,5 +188,34 @@ function filterHandler() {
 // clear todo
 todoClear.addEventListener('click', function(){
   todoContent.innerHTML = ''
+  localStorage.setItem('todo', [])
 })
 // end clear todo
+
+// local storage
+// load elements in localstorage
+window.addEventListener('load', function(){
+  let localValues = getValuesFromLocalStorage()
+  if(localValues.length >= 1){
+    localValues.forEach( localValue => addElement(localValue) )
+  }
+})
+// load elements in localstorage
+
+// get values from localstorage
+function getValuesFromLocalStorage(){
+  return localStorage.getItem('todo') && IsJsonString( localStorage.getItem('todo') ) && JSON.parse( localStorage.getItem('todo') ) ? JSON.parse( localStorage.getItem('todo') ) : [];
+}
+// end get values from localstorage
+// end local storage
+
+// public methods
+function IsJsonString(str) {
+  try {
+      JSON.parse(str);
+  } catch (e) {
+      return false;
+  }
+  return true;
+}
+// end public methods
