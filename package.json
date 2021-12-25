@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack",
+    "build": "webpack",
     "watch": "webpack --watch",
     "rtl": "webpack --config webpack.config.rtl.js"
   },
