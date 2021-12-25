@@ -1,6 +1,7 @@
 # todo-with-vanilla-js
 Hi...
 for use this project, just run following codes in terminal:
+
 1 fist:
 ```bash
 npm install
@@ -14,7 +15,9 @@ npm run build
 <br>
 <br>
 سلام...
+
 برای استفاده از این پروژه تستی، دستورات زیر را در ترمیننال وارد کنید:
+
 1 اول:
 ```bash
 npm install
@@ -23,5 +26,4 @@ npm install
 ```bash
 npm run build
 ```
-
 > نکته: node و npm باید از قبل نصب شده باشند!
