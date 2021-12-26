@@ -33,7 +33,7 @@
     "webpack": "latest",
     "webpack-cli": "latest",
     "webpack-shell-plugin-next": "latest",
-    "glob-parent": ">=5.1.2",
+    "glob-parent": ">=5.1.2"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
