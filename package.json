@@ -15,6 +15,7 @@
   "devDependencies": {
     "@automattic/webpack-rtl-plugin": "latest",
     "@babel/core": "latest",
+    "@babel/plugin-transform-runtime": "^7.16.5",
     "@babel/preset-env": "latest",
     "@ianwalter/exclude-assets-plugin": "latest",
     "@webpack-cli/generators": "latest",
