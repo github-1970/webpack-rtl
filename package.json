@@ -15,7 +15,7 @@
   "devDependencies": {
     "@automattic/webpack-rtl-plugin": "latest",
     "@babel/core": "latest",
-    "@babel/plugin-transform-runtime": "^7.16.5",
+    "@babel/plugin-transform-runtime": "latest",
     "@babel/preset-env": "latest",
     "@ianwalter/exclude-assets-plugin": "latest",
     "@webpack-cli/generators": "latest",
@@ -33,7 +33,7 @@
     "webpack": "latest",
     "webpack-cli": "latest",
     "webpack-shell-plugin-next": "latest",
-    "glob-parent": ">=5.1.2"
+    "glob-parent": ">=5.1.2",
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
