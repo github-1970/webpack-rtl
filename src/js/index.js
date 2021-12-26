@@ -12,7 +12,7 @@ const select = document.querySelector("select");
 // end variables
 
 // style
-// change caret direction
+// caret direction change
 window.addEventListener("click", function (e) {
   if (
     e.target.parentNode == selectContainer &&
@@ -23,7 +23,7 @@ window.addEventListener("click", function (e) {
     selectContainer.dataset.after = "";
   }
 });
-// end change caret
+// end caret direction change
 // end style
 
 // add item
@@ -43,9 +43,13 @@ todoSubmit.addEventListener("click", function (e) {
     // edit item
     if (editing) {
       let textItem = editing.querySelector(".li-text")
-
-      let localValuesEdited = getValuesFromLocalStorage().map(text => text == textItem.innerText ? todoInput.value : text)
-      localStorage.setItem('todo', JSON.stringify(localValuesEdited))
+      let itemsEdited = getValuesFromLocalStorage().map(item => {
+        if(item.text === textItem.innerHTML){
+          item.text = todoInput.value
+        }
+        return item
+      })
+      localStorage.setItem('todo', JSON.stringify(itemsEdited))
 
       textItem.innerText = todoInput.value;
       editing.classList.remove("editing");
@@ -54,9 +58,10 @@ todoSubmit.addEventListener("click", function (e) {
     }
     // add item
     else {
-      let inputArray = getValuesFromLocalStorage()
-      inputArray.push(todoInput.value)
-      localStorage.setItem('todo', JSON.stringify(inputArray))
+      let inputsArray = getValuesFromLocalStorage()
+      let itemObj = {text: todoInput.value, classList: []}
+      inputsArray.push(itemObj)
+      localStorage.setItem('todo', JSON.stringify(inputsArray))
 
       addElement(todoInput.value);
       todoInput.value = "";
@@ -65,9 +70,10 @@ todoSubmit.addEventListener("click", function (e) {
   }
 });
 
-function addElement(value) {
+function addElement(value, classList=[]) {
   let li = document.createElement("li");
   li.classList.add("todo-item");
+  classList.length >= 1 && li.classList.add(...classList);
   li.innerHTML = `
   <span class="li-text">${value}</span>
   
@@ -99,33 +105,40 @@ function addError() {
 
 // completed and uncompleted
 todoContent.addEventListener("click", function (e) {
-  let _todoItem = e.target.parentNode.parentNode.parentNode;
-  let parent = e.target.parentNode;
+  let _todoItem = e.target.closest('.todo-item');
+  let parent = e.target.closest('.check');
 
-  if (parent.classList.contains("check")) {
+  if (parent) {
     _todoItem.classList.toggle("completed");
+
+    // add itemClass in localstorage
+    let textItem = _todoItem.querySelector(".li-text")
+    let classList = _todoItem.className.split(' ').filter(item => item != 'todo-item')
+
+    let itemsEdited = getValuesFromLocalStorage().map(item => {
+      if(item.text === textItem.innerHTML){
+        item.classList = classList
+      }
+      return item
+    })
+
+    localStorage.setItem('todo', JSON.stringify(itemsEdited))
+    // end add itemClass in localstorage
   }
 });
-// todoItems.forEach(item => {
-//   item.addEventListener('click', function(e){
-//     let _todoItem = e.target.parentNode.parentNode.parentNode
-
-//     if( _todoItem.classList.contains('todo-item') ){
-//       _todoItem.classList.toggle('completed')
-//     }
-//   })
-// })
 // end completed and uncompleted
 
 // remove item
 todoContent.addEventListener("click", function (e) {
-  let _todoItem = e.target.parentNode.parentNode.parentNode;
-  let parent = e.target.parentNode;
+  // let _todoItem = e.target.parentNode.parentNode.parentNode;
+  let _todoItem = e.target.closest('.todo-item');
+  let parent = e.target.closest('.trash');
 
-  if (parent.classList.contains("trash")) {
+  // if (parent.classList.contains("trash")) {
+  if (parent) {
     let textItem = _todoItem.querySelector(".li-text")
 
-    let localValuesEdited = getValuesFromLocalStorage().filter(text => text != textItem.innerText)
+    let localValuesEdited = getValuesFromLocalStorage().filter(item => item.text != textItem.innerHTML)
     localStorage.setItem('todo', JSON.stringify(localValuesEdited))
 
     _todoItem.remove();
@@ -135,11 +148,11 @@ todoContent.addEventListener("click", function (e) {
 
 // edit
 todoContent.addEventListener("click", function (e) {
-  let _todoItem = e.target.parentNode.parentNode.parentNode;
-  let parent = e.target.parentNode;
+  let _todoItem = e.target.closest('.todo-item');
+  let parent = e.target.closest('.edit');
   let text = _todoItem.innerText;
 
-  if (parent.classList.contains("edit")) {
+  if (parent) {
     todoInput.value = "";
     if (!_todoItem.classList.contains("editing")) {
       todoInput.value = text;
@@ -202,6 +215,12 @@ todoClear.addEventListener('click', function () {
 })
 // end clear todo
 
+// sanitize todoInput
+todoInput.addEventListener('change', function(){
+  todoInput.value = todoInput.value.replace(/<.*?>/gm, '')
+})
+// end sanitize todoInput
+
 // local storage
 // load elements in localstorage
 window.addEventListener('load', function () {
@@ -209,10 +228,16 @@ window.addEventListener('load', function () {
   todoInput.focus()
   // end just abuse...
 
-  let localValues = getValuesFromLocalStorage()
-  if (localValues.length >= 1) {
-    localValues.forEach(localValue => addElement(localValue))
+  try{
+    let localItems = textWithClassForItems( getValuesFromLocalStorage() )
+    if (localItems.length >= 1) {
+      localItems.forEach(localItem => addElement(localItem.text, localItem.classList))
+    }
   }
+  catch(err){
+    console.log(err)
+  }
+  
 })
 // load elements in localstorage
 
@@ -231,5 +256,13 @@ function IsJsonString(str) {
     return false;
   }
   return true;
+}
+
+function textWithClassForItems(LSObject,) {
+  return LSObject.map(item => {
+    let text = item.text
+    // let classValue = item.classList.length>1 ? item.classList.reduce((acc, item) => acc += ' ' + item, ''): item.classList[0]
+    return {text, classList: item.classList}
+  })
 }
 // end public methods
