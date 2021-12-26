@@ -32,6 +32,7 @@
     "webpack": "latest",
     "webpack-cli": "latest",
     "webpack-shell-plugin-next": "latest",
-    "style-loader": "latest"
+    "style-loader": "latest",
+	"glob-parent": ">=5.1.2"
   }
 }
