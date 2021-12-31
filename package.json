@@ -4,10 +4,10 @@
   "description": "js structure for beginner project",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack",
-	"build": "webpack",
+    "build": "webpack",
     "watch": "webpack --watch",
-    "rtl": "webpack --config webpack.config.rtl.js"
+    "build-rtl": "webpack --config webpack.config.rtl.js",
+    "rtl-watch": "webpack --config webpack.config.rtl.js --watch"
   },
   "keywords": [],
   "author": "",
@@ -15,24 +15,28 @@
   "devDependencies": {
     "@automattic/webpack-rtl-plugin": "latest",
     "@babel/core": "latest",
+    "@babel/plugin-transform-runtime": "latest",
     "@babel/preset-env": "latest",
-	"@babel/plugin-transform-runtime": "latest",
     "@ianwalter/exclude-assets-plugin": "latest",
-    "@webpack-cli/generators": "latest",
+    "@webpack-cli/generators": "^1.1.0",
     "babel-loader": "latest",
     "css-loader": "latest",
+    "css-minimizer-webpack-plugin": "^3.3.1",
+    "dotenv": "^10.0.0",
     "eslint": "latest",
     "eslint-webpack-plugin": "latest",
+    "glob-parent": ">=5.1.2",
+    "html-minimizer-webpack-plugin": "^3.5.0",
     "html-webpack-exclude-assets-plugin": "latest",
     "html-webpack-plugin": "latest",
     "html-webpack-tags-plugin": "latest",
     "mini-css-extract-plugin": "latest",
     "sass": "latest",
     "sass-loader": "latest",
+    "style-loader": "latest",
+    "terser-webpack-plugin": "^5.3.0",
     "webpack": "latest",
     "webpack-cli": "latest",
-    "webpack-shell-plugin-next": "latest",
-    "style-loader": "latest",
-	"glob-parent": ">=5.1.2"
+    "webpack-shell-plugin-next": "latest"
   }
 }

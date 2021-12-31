@@ -3,20 +3,26 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ESLintPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+// for production
+require('dotenv').config()
+const IS_PROD = (process.env.MODE_ENV == 'production');
+const HtmlMinimizerPlugin = require("html-minimizer-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
+
 module.exports = {
   entry: "./src/js/index.js",
   output: {
     path: path.resolve(__dirname, "dist"),
-    filename: "[name].[contenthash].bundle.js",
+    filename: IS_PROD ? "[name].[contenthash].bundle.min.js" : "[name].[contenthash].bundle.js",
     clean: true
   },
-  mode: 'development',
+  mode: process.env.MODE_ENV,
   module: {
     rules: [
       {
         test: /\.css$/i,
         use: [MiniCssExtractPlugin.loader, "css-loader"],
-
       },
       {
         test: /\.s[ac]ss$/i,
@@ -64,6 +70,16 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'templates/index.html',
     }),
-
   ],
+  optimization: {
+    minimize: IS_PROD,
+    minimizer: [
+      new HtmlMinimizerPlugin({ parallel: true }),
+      new CssMinimizerPlugin({ parallel: true }),
+      new TerserPlugin({
+        parallel: true,
+        extractComments: false
+      }),
+    ],
+  },
 };
