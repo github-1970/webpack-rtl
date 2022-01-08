@@ -8,8 +8,8 @@
     "watch": "webpack --watch",
     "build-rtl": "webpack --config webpack.config.rtl.js",
     "rtl-watch": "webpack --config webpack.config.rtl.js --watch",
-    "build-multi": "webpack --config webpack.multipage.config.rtl.js",
-    "multi-watch": "webpack --config webpack.multipage.config.rtl.js --watch",
+    "build-multi": "webpack --config webpack.multipage.config.js",
+    "multi-watch": "webpack --config webpack.multipage.config.js --watch",
     "build-multi-rtl": "webpack --config webpack.multipage.config.rtl.js",
     "multi-rtl-watch": "webpack --config webpack.multipage.config.rtl.js --watch"
   },
