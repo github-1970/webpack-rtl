@@ -2,8 +2,6 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ESLintPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const WebpackRTLPlugin = require('@automattic/webpack-rtl-plugin');
-const ExcludeAssetsPlugin = require('@ianwalter/exclude-assets-plugin')
 
 // for production
 require('dotenv').config()
@@ -80,13 +78,6 @@ const webpackConfig = {
     new ESLintPlugin(),
     new MiniCssExtractPlugin({
       filename: "css/[name].css"
-    }),
-    new ExcludeAssetsPlugin(),
-    new WebpackRTLPlugin({
-      options: {},
-      plugins: [],
-      diffOnly: false,
-      minify: true,
     }),
   ],
   optimization: {

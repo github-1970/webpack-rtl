@@ -2,6 +2,8 @@ const path = require("path");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const ESLintPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackRTLPlugin = require('@automattic/webpack-rtl-plugin');
+const ExcludeAssetsPlugin = require('@ianwalter/exclude-assets-plugin')
 
 // for production
 require('dotenv').config()
@@ -11,8 +13,7 @@ const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const TerserPlugin = require('terser-webpack-plugin');
 
 // for multi page
-// const pages = ['index', 'register', 'login']
-const pages = ['index']
+const pages = ['index', 'register', 'login']
 const fs = require('fs');
 
 const webpackConfig = {
@@ -78,7 +79,14 @@ const webpackConfig = {
     new ESLintPlugin(),
     new MiniCssExtractPlugin({
       filename: "css/[name].css"
-    })
+    }),
+    new ExcludeAssetsPlugin(),
+    new WebpackRTLPlugin({
+      options: {},
+      plugins: [],
+      diffOnly: false,
+      minify: true,
+    }),
   ],
   optimization: {
     minimize: IS_PROD,
@@ -97,6 +105,7 @@ const webpackConfig = {
 const allHtmlWebpackPlugins = pages.map(
   (page) => {
     let pageTemplate = `templates/${page}.html`
+    let cssFile = `${page}.css`
 
     if ( !fs.existsSync(pageTemplate) ) {
       pageTemplate = 'templates/index.html'
@@ -106,6 +115,7 @@ const allHtmlWebpackPlugins = pages.map(
       inject: true,
       template: pageTemplate,
       filename: `${page}.html`,
+      excludeAssets: [new RegExp(cssFile)],
       chunks: [page],
     })
   }
