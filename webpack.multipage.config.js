@@ -12,7 +12,7 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 // for multi page
 // const pages = ['index', 'register', 'login']
-const pages = ['index']
+const pages = ['index', 'test']
 const fs = require('fs');
 
 const webpackConfig = {
