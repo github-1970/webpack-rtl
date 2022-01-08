@@ -4,8 +4,7 @@ const ESLintPlugin = require('eslint-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // const WebpackRTLPlugin = require('webpack-rtl-plugin');
 const WebpackRTLPlugin = require('@automattic/webpack-rtl-plugin');
-var HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
-// var HtmlWebpackExcludeAssetsPlugin = require('html-webpack-exclude-assets-plugin');
+// var HtmlWebpackTagsPlugin = require('html-webpack-tags-plugin');
 const ExcludeAssetsPlugin = require('@ianwalter/exclude-assets-plugin')
 
 // for production
@@ -79,10 +78,10 @@ module.exports = {
       excludeAssets: [/styles.css/]
     }),
     new ExcludeAssetsPlugin(),
-    new HtmlWebpackTagsPlugin({
-      tags: ['css/styles.rtl.css'],
-      append: true
-    }),
+    // new HtmlWebpackTagsPlugin({
+    //   tags: ['css/styles.rtl.css'],
+    //   append: true
+    // }),
     new WebpackRTLPlugin({
       // filename: 'css/styles.rtl.css',
       options: {},
