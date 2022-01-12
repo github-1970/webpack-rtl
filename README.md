@@ -1,2 +1,2 @@
-# js-structure-for-beginner-project
-js structure for beginner project
+# webpack-rtl
+webpack-rtl structure for beginner project
