@@ -1,2 +1,2 @@
 # webpack-rtl
-webpack-rtl structure for beginner project
+webpack-rtl structure for start project
