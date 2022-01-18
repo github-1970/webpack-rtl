@@ -101,4 +101,11 @@ module.exports = {
       }),
     ],
   },
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'templates'),
+    },
+    compress: true,
+    port: 9000,
+  },
 };

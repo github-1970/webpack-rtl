@@ -100,6 +100,13 @@ const webpackConfig = {
       }),
     ],
   },
+  devServer: {
+    static: {
+      directory: path.join(__dirname, 'templates'),
+    },
+    compress: true,
+    port: 9000,
+  },
 };
 
 // for multi page
