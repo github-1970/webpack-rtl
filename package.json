@@ -48,6 +48,8 @@
     "webpack": "latest",
     "webpack-cli": "latest",
     "webpack-dev-server": "^4.7.3",
-    "webpack-shell-plugin-next": "latest"
+    "webpack-shell-plugin-next": "latest",
+    "follow-redirects": ">=1.14.7",
+    "shelljs": ">=0.8.5"
   }
 }
